@@ -69,7 +69,8 @@ arch:
 models: ???
 loss:
   _target_: physicsnemo.sym.loss.aggregator.Sum
-  weights: null
+  weights:
+    data: 1.0
 optimizer:
   _params_:
     compute_gradients: adam_compute_gradients
@@ -89,5 +90,6 @@ scheduler:
   decay_steps: 4000
 batch_size:
   data: 512
+  Interior : 4000
 custom: ???
 
