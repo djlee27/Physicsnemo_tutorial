@@ -95,4 +95,6 @@ batch_size:
   BC: 1000
   Interior: 4000
 custom: ???
-
+train:
+  epochs_A: 10000
+  epochs_B: 10000
