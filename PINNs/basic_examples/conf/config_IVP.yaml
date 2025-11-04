@@ -69,7 +69,9 @@ arch:
 models: ???
 loss:
   _target_: physicsnemo.sym.loss.aggregator.Sum
-  weights: null
+  weights:
+    interior: 1.0
+    IC: 100.0
 optimizer:
   _params_:
     compute_gradients: adam_compute_gradients
@@ -85,11 +87,10 @@ optimizer:
 scheduler:
   _target_: custom
   _name_: tf.ExponentialLR
-  decay_rate: 0.95
+  decay_rate: 1.0
   decay_steps: 4000
 batch_size:
-  IC: 1000
-  BC: 1000
-  Interior: 4000
+  Interior: ${data.N_R}
+  IC: ${data.N_B}
 custom: ???
 
