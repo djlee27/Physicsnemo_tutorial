@@ -9,8 +9,8 @@ training:
   save_network_freq: 1000
   print_stats_freq: 200
   summary_freq: 1000
-  grad_clip_max_norm: 0.5
-  monitor_grad_clip: true
+  grad_clip_max_norm: null
+  monitor_grad_clip: false
   ntk:
     use_ntk: false
     save_name: null
@@ -42,11 +42,11 @@ network_dir: outputs
 initialization_network_dir: ''
 save_filetypes: vtk
 summary_histograms: 'off'
-jit: true
-jit_use_nvfuser: true
+jit: false
+jit_use_nvfuser: false
 jit_arch_mode: only_activation
 jit_autograd_nodes: false
-cuda_graphs: true
+cuda_graphs: false
 cuda_graph_warmup: 20
 find_unused_parameters: false
 broadcast_buffers: false
@@ -73,20 +73,17 @@ loss:
     interior: 1.0
     BC: 100.0
 optimizer:
-  _params_:
-    compute_gradients: adam_compute_gradients
-    apply_gradients: adam_apply_gradients
   _target_: torch.optim.Adam
   lr: 0.001
   betas: [0.9, 0.999]
   eps: 1.0e-08
   weight_decay: 0.0
   amsgrad: false
+
 scheduler:
-  _target_: custom
-  _name_: tf.ExponentialLR
-  decay_rate: 1.0
-  decay_steps: 4000
+  _target_: torch.optim.lr_scheduler.StepLR   # ← PyTorch와 동일
+  step_size: 1000
+  gamma: 0.9
 batch_size:
   Interior: ${data.N_R}
   BC: ${data.N_B}
