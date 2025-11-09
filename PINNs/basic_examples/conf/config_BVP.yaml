@@ -79,6 +79,9 @@ optimizer:
   eps: 1.0e-08
   weight_decay: 0.0
   amsgrad: false
+  _params_:
+    compute_gradients: adam_compute_gradients
+    apply_gradients: adam_apply_gradients
 
 scheduler:
   _target_: torch.optim.lr_scheduler.StepLR   # ← PyTorch와 동일
