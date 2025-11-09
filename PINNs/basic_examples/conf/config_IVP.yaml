@@ -72,7 +72,7 @@ loss:
   weights:
     interior: 1.0
     IC: 100.0
-  ic_w: 100.0
+
 
 optimizer:
   _params_:
@@ -94,7 +94,8 @@ scheduler:
 batch_size:
   Interior: ${data.N_R}
   IC: ${data.N_B}
-custom: ???
+custom:
+  ic_w: 100.0
 
 train:
   mode: hybrid            # adam | lbfgs | hybrid
