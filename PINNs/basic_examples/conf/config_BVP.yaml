@@ -9,7 +9,7 @@ training:
   save_network_freq: 1000
   print_stats_freq: 200
   summary_freq: 1000
-  grad_clip_max_norm: null
+  grad_clip_max_norm: 1e9
   monitor_grad_clip: false
   ntk:
     use_ntk: false
